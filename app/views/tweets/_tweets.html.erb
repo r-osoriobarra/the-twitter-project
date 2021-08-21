@@ -1,0 +1,20 @@
+<h1>All Tweets</h1>
+<table>
+    <thead>
+        <tr>
+            <th>User Photo</th>
+            <th>Content</th>
+            <th>Retweets</th>
+            <th>Likes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% tweets.each do |tweet| %>
+        <tr>
+            <td><%= image_tag tweet.user_photo %></td>
+            <td><%= tweet.content %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
