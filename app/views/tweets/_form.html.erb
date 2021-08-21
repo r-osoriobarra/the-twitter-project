@@ -1,0 +1,21 @@
+<%= form_with(model: [@user, tweet], local: true) do |f| %>
+    <% if tweet.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+            <ul>
+                <% tweet.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    </div>
+
+    <div class="actions">
+    <%= f.submit "New Tweet" %>
+</div>
+<% end %>
