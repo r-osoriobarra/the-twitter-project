@@ -2,19 +2,19 @@
 <table>
     <thead>
         <tr>
+            <th>#</th>
             <th>User Photo</th>
             <th>Content</th>
             <th>N Likes</th>
-            <th>N Retweets</th>
         </tr>
     </thead>
     <tbody>
         <% tweets.each do |tweet| %>
         <tr>
-            <td><%= image_tag tweet.user_photo, class:'rounded-circle' %></td>
+            <td><%= tweet.id %></td>
+            <td><%= image_tag tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
             <td><%= tweet.content %></td>
             <td><%= tweet.count_likes %></td>
-            
             <% if user_signed_in? %>
                 <% if tweet.liked?(current_user) %>
                     <td><%= link_to 'Dislike', create_like_path(tweet), method: :delete %></td>

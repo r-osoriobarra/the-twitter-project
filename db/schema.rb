@@ -23,9 +23,6 @@ ActiveRecord::Schema.define(version: 2021_08_21_013819) do
 
   create_table "tweets", force: :cascade do |t|
     t.string "content"
-    t.string "user_photo"
-    t.integer "n_likes"
-    t.integer "n_retweets"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

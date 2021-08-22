@@ -5,6 +5,7 @@ ruby '2.7.3'
 gem 'devise'
 gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
+gem 'faker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'

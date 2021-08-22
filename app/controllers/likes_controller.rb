@@ -14,7 +14,7 @@ class LikesController < ApplicationController
         tweet = Tweet.find(params[:id])
         like = Like.find_by(user_id: current_user.id)
         like.destroy
-        redirect_to root_path, notice: 'se destruyó un like'
+        redirect_to root_path, notice: "se destruyó like del post #{tweet.id} "
     end    
     
 end
