@@ -6,6 +6,7 @@
             <th>User Photo</th>
             <th>Content</th>
             <th>N Likes</th>
+            <th>N Retweets</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
             <td><%= image_tag tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
             <td><%= tweet.content %></td>
             <td><%= tweet.count_likes %></td>
+            <td><%= Tweet.count_retweets(tweet) %></td>
             <% if user_signed_in? %>
                 <% if tweet.liked?(current_user) %>
                     <td><%= link_to 'Dislike', create_like_path(tweet), method: :delete %></td>
