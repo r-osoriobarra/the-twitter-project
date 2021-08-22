@@ -21,8 +21,10 @@
                 <% else %>
                     <td><%= link_to 'Like', destroy_like_path(tweet), method: :post %></td>
                 <% end %>
+                <td><%= link_to 'Retweet', create_retweet_path(tweet) ,method: :post %></td>
             <% else %>
                 <td><%= link_to 'Like', new_user_session_path %></td>
+                <td><%= link_to 'Retweet', new_user_session_path %></td>
             <% end %>
         </tr>
         <% end %>

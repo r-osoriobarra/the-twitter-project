@@ -13,12 +13,21 @@ class TweetsController < ApplicationController
     @user = current_user
   end
 
+  def retweet
+    original_tweet = Tweet.find(params[:id])
+    @tweet = Tweet.create(
+      content: original_tweet.content,
+      user_id: original_tweet.user_id,
+      tweet_id: original_tweet.id
+    )
+    redirect_to root_path, notice: "se creó un retweet!"
+  end
+
   def create
     @tweet = Tweet.create(tweet_params)
     @user = current_user
 
     @tweet.user = current_user
-    @tweet.user_photo = @user.photo
 
       respond_to do |format|
         if @tweet.save
