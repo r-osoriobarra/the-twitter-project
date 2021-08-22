@@ -1,4 +1,5 @@
 <h1>All Tweets</h1>
+<%= paginate @tweets %>
 <table>
     <thead>
         <tr>
@@ -17,6 +18,7 @@
             <td><%= tweet.content %></td>
             <td><%= tweet.count_likes %></td>
             <td><%= Tweet.count_retweets(tweet) %></td>
+            
             <% if user_signed_in? %>
                 <% if tweet.liked?(current_user) %>
                     <td><%= link_to 'Dislike', create_like_path(tweet), method: :delete %></td>
@@ -32,4 +34,4 @@
         <% end %>
     </tbody>
 </table>
-
+<%= paginate @tweets %>

@@ -1,11 +1,16 @@
 class Tweet < ApplicationRecord
-  
+  #kaminari pagination
+  paginates_per 50
+
+  #user and likes associations
   belongs_to :user
   has_many :likes, dependent: :destroy
 
+  #recursive retweet association
   belongs_to :original_tweet, optional: true
   has_many :retweets, dependent: :destroy
 
+  #custom methods
   def liked?(user)
     self.likes.find_by(user_id: user.id).present?
     #ver si existe un error con esta sentencia

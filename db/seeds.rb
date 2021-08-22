@@ -28,7 +28,7 @@ User.create([{
     password_confirmation: '123456'
 }])
 
-5.times do
+50.times do
     Tweet.create(
         content: Faker::TvShows::BojackHorseman.quote,
         user_id: rand(1..3)
