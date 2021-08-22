@@ -19,8 +19,6 @@ class TweetsController < ApplicationController
 
     @tweet.user = current_user
     @tweet.user_photo = @user.photo
-    # @tweet.n_retweets = 
-    # @tweet.n_likes =
 
       respond_to do |format|
         if @tweet.save

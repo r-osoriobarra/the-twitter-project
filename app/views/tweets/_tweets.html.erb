@@ -4,15 +4,26 @@
         <tr>
             <th>User Photo</th>
             <th>Content</th>
-            <th>Retweets</th>
-            <th>Likes</th>
+            <th>N Likes</th>
+            <th>N Retweets</th>
         </tr>
     </thead>
     <tbody>
         <% tweets.each do |tweet| %>
         <tr>
-            <td><%= image_tag tweet.user_photo %></td>
+            <td><%= image_tag tweet.user_photo, class:'rounded-circle' %></td>
             <td><%= tweet.content %></td>
+            <td><%= tweet.count_likes %></td>
+            
+            <% if user_signed_in? %>
+                <% if tweet.liked?(current_user) %>
+                    <td><%= link_to 'Dislike', create_like_path(tweet), method: :delete %></td>
+                <% else %>
+                    <td><%= link_to 'Like', destroy_like_path(tweet), method: :post %></td>
+                <% end %>
+            <% else %>
+                <td><%= link_to 'Like', new_user_session_path %></td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>
