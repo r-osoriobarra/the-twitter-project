@@ -21,20 +21,34 @@
             
             <% if user_signed_in? %>
                 <% if tweet.liked?(current_user) %>
-                    <td><%= link_to create_like_path(tweet), method: :delete do %>
-                        <i class="fas fa-heart fa-lg"></i>
+                    <td>
+                        <%= link_to create_like_path(tweet), method: :delete do %>
+                            <div class="text-danger"><%= svg('heart-fill') %></div>
                         <% end %>
                     </td>
                 <% else %>
-                    <td><%= link_to destroy_like_path(tweet), method: :post do %>
-                        <i class="far fa-heart fa-lg"></i>
+                    <td>
+                        <%= link_to destroy_like_path(tweet), method: :post do %>
+                            <div class="text-danger"><%= svg('heart')%></div>
                         <% end %>
                     </td>
                 <% end %>
-                <td><%= link_to 'Retweet', create_retweet_path(tweet) ,method: :post %></td>
+                <td>
+                    <%= link_to create_retweet_path(tweet) ,method: :post do %>
+                        <%= svg('retweet') %>
+                    <% end %>
+                </td>
             <% else %>
-                <td><%= link_to 'Like', new_user_session_path %></td>
-                <td><%= link_to 'Retweet', new_user_session_path %></td>
+                <td>
+                    <%= link_to new_user_session_path do %>
+                        <div class="text-danger"><%= svg('heart')%></div>
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to new_user_session_path do %>
+                        <%= svg('retweet') %>
+                    <% end %>    
+                </td>
             <% end %>
         </tr>
         <% end %>
