@@ -2,6 +2,8 @@ class TweetsController < ApplicationController
   
   def index
     @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    @tweet = Tweet.new
+    @user = current_user
   end
 
   def show

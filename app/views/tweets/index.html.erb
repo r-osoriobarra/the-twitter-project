@@ -1,6 +1,6 @@
 <h1>Bienvenido a tuiter </h1>
 <% if user_signed_in? %>
-    <%= link_to 'New tweet', new_user_tweet_path(current_user)  %>
+    <%= render 'form', tweet: @tweet %>
 <% end %>
 
 <%= render 'tweets', tweets: @tweets %>

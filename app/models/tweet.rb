@@ -10,6 +10,8 @@ class Tweet < ApplicationRecord
   belongs_to :tweet, optional: true
   has_many :tweets, dependent: :destroy
 
+  #validations
+  validates :content, presence: true
   #custom methods
   def liked?(user)
     self.likes.find_by(user_id: user.id).present?
