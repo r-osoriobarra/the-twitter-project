@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @users = User.all
   end
 
   def new

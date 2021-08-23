@@ -6,6 +6,7 @@
             <th>#</th>
             <th>User Photo</th>
             <th>Content</th>
+            <th>Date</th>
             <th>N Likes</th>
             <th>N Retweets</th>
         </tr>
@@ -16,11 +17,24 @@
             <td><%= tweet.id %></td>
             <td><%= image_tag tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
             <td><%= tweet.content %></td>
+            <% if user_signed_in? %>
+                <td>
+                    <%= link_to user_tweet_path(@user, tweet) do %>
+                        <%=tweet.created_at %>
+                    <% end %>
+                </td>
+            <% else %>
+                <td>
+                    <%= link_to new_user_session_path do %>
+                        <%=tweet.created_at %>
+                    <% end %>
+                </td>
+            <% end %>
             <td><%= tweet.count_likes %></td>
             <td><%= Tweet.count_retweets(tweet) %></td>
             
             <% if user_signed_in? %>
-                <% if tweet.liked?(current_user) %>
+                <% if tweet.liked?(@user) %>
                     <td>
                         <%= link_to create_like_path(tweet), method: :delete do %>
                             <div class="text-danger"><%= svg('heart-fill') %></div>
