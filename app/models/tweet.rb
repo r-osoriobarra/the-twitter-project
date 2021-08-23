@@ -7,8 +7,8 @@ class Tweet < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   #recursive retweet association
-  belongs_to :original_tweet, optional: true
-  has_many :retweets, dependent: :destroy
+  belongs_to :tweet, optional: true
+  has_many :tweets, dependent: :destroy
 
   #custom methods
   def liked?(user)
