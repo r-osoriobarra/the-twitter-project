@@ -21,9 +21,15 @@
             
             <% if user_signed_in? %>
                 <% if tweet.liked?(current_user) %>
-                    <td><%= link_to 'Dislike', create_like_path(tweet), method: :delete %></td>
+                    <td><%= link_to create_like_path(tweet), method: :delete do %>
+                        <i class="fas fa-heart fa-lg"></i>
+                        <% end %>
+                    </td>
                 <% else %>
-                    <td><%= link_to 'Like', destroy_like_path(tweet), method: :post %></td>
+                    <td><%= link_to destroy_like_path(tweet), method: :post do %>
+                        <i class="far fa-heart fa-lg"></i>
+                        <% end %>
+                    </td>
                 <% end %>
                 <td><%= link_to 'Retweet', create_retweet_path(tweet) ,method: :post %></td>
             <% else %>
