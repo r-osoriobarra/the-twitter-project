@@ -1,54 +1,58 @@
 # Twitter.Project
 
-Entrega Hito 1 de prueba final modulo Desarrollo de aplicaciones web con Rails(G46) Desafío Latam.
+Final test Milestone 1 delivery Web application development with Rails module(G46), Desafío Latam.
 
-## Contenido
-1. **Acerca de Twitter.Project**
-1. **Estructura**  
-    1. *Modelo conceptual*
-    1. *Modelo Físico*
-1. **Cómo funciona**
-    1. *Modelo User*
-    1. *Modelo Tweet*
-    1. *Modelo Like*
-1. **Herramientas**
-1. **Demo**
+## Content
+1. **About Twitter.Project**
+  1. *Versions*
+  1. *Demo*
+1. **Installation**  
+1. **How it works**
+    1. *Conceptual model*
+    1. *User model*
+    1. *Tweet model*
+    1. *Like model*
+1. **Tools**
+1. **Known bugs**
 
-### *Twitter.Project*
-Este proyecto intenta replicar algunas de las funcionalidades más conocidas de la plataforma Twitter, principalmente el uso de *Tweets*, dar *like/dislike* y la acción *Retweet*. Lo anterior se combina con una previa autenticación del usuario, el cuál tendrá diferentes visualizaciones dependiendo si se encuentra autenticado (o no), y con la opción de poder crear una cuenta con su email y contraseña.
 
-### *Estructura*
-#### Modelo conceptual
+### **About Twitter.Project**
+This project tries to replicate some of the most popular features of the Twitter platform, mainly the use of *Tweets*, *like / dislike* and *Retweet* actions. This is combined with a previous authentication of the user, which will have different views depending on whether it is authenticated (or not), and with the option of creating an account with its email and password.
 
-Este proyecto consta de 3 modelos principales: **User, Tweet y Like**
-    - **User model**: administra a todos los usuarios de la aplicación. Es el modelo principal al cual los demás modelos referencian.
-    - **Tweet model**: maneja la creación y destrucción de los tweet. También administra los retweets en una asociación recursiva.
-    - **Like model**: se encarga de la creación y destrucción de los *likes/dislikes* asociados a los tweet y usuarios.
 
-- Algunos de los atributos como **n_likes o n_retweets** por normalización desaparecen como atributos propios del modelo Tweet, ya que se obtiene de la relación entre entidades.
-- Todos los modelos mantienen relación 1 a N.
+#### *Versions*
+Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
+#### *Demo*
+https://the-twitter-project.herokuapp.com/
 
+### **Installation**
+  1. `git clone git@github.com:r-osoriobarra/the-twitter-project.git`
+  2. `rails db:migrate`
+  3. `rails db:seed`
+
+### **How it works**
+#### *Conceptual model*
+
+This project consists of 3 main models: **User, Tweet y Like**
+    - **User model**: manages all users who use the application. It is the main model to which the other models refer.
+    - **Tweet model**: manages the creation and destruction of tweets. It also manages retweets in a recursive association.
+    - **Like model**: manages the creation and destruction of *likes/dislikes* associated with tweets and users.
+
+- Some of the attributes such as **n_likes or n_retweets** by normalization disappear as attributes of the Tweet model, since it is obtained from the relationship between entities.
+- All models maintain a 1 to N relationship.
 
 ![Modelo conceptual](https://github.com/r-osoriobarra/ViajesChile/blob/main/assets/img/twitter_project.png)
-#### Modelo Físico
 
-El modelo físico entonces quedaría de la siguiente manera.
-
-![Modelo conceptual](https://github.com/r-osoriobarra/ViajesChile/blob/main/assets/img/twitter_project2.png)
-
-- Todos las entidades responden a arquitectura REST.
-
-### *Cómo funciona*
-##### Modelo User
-- Para todo lo de autenticación del usuario se utilizó la gema Devise con este modelo
-- Las relaciones es 1 a N con el resto de modelos (Tweet y Like)
+##### *User model*
+- For all user authentication, the Devise gem was used with this model.
+- Relationships are 1 to N with the rest of the models (Tweet and Like)
 ```
     has_many :tweets, dependent: :destroy
     has_many :likes, dependent: :destroy
 ```
-##### Modelo Tweet (y Retweet)
-- Junto con su controlador, manejan la mayoría de las acciones de la aplicación fuera de la autenticación.
-- Relación con entidades user, like y tweet (recursiva):
+##### *Tweet model (and Retweet)*
+- With their controller, handle most of the app's actions (except authentication).
+- Relationship with user, like and tweet entities (recursive):
 ```
   #user and likes associations
   belongs_to :user
@@ -58,7 +62,7 @@ El modelo físico entonces quedaría de la siguiente manera.
   belongs_to :tweet, optional: true
   has_many :tweets, dependent: :destroy
 ```
-- En el controlador de tweet tambien se adiciona el método `retweet`, que se encarga de copiar el comentario retweeteado, idenficando el `params[:id]` de la ruta creada ` post /tweets/:id, to: 'tweets#retweet'`.
+- In the tweet controller, the `retweet` method is also added, which is responsible for copying the retweeted comment, identifying the` params[:id] `of the created route `post /tweets/:id, to: 'tweets#retweet'`.
   ```
   def retweet
     original_tweet = Tweet.find(params[:id])
@@ -70,7 +74,7 @@ El modelo físico entonces quedaría de la siguiente manera.
     redirect_to root_path, notice: "Retweet was successfully created."
   end
   ```
-- En el modelo se crean metodos de instancia y clase para obtener el número de likes y retweets para cada tweet,respectivamente, en base a la relación con cada entidad, dado que no son atributos propios de la entidad Tweet:
+- In the model, instance and class methods are created to obtain the number of likes and retweets for each tweet, respectively, based on the relationship with each entity, since they are not attributes of the Tweet entity:
 
 ```
  def count_likes
@@ -81,28 +85,30 @@ El modelo físico entonces quedaría de la siguiente manera.
     Tweet.all.count {|t| t.tweet_id == tweet.id}
   end
 ```
-##### Modelo Like
-- Relación con entidades user y tweet
+##### *Like model*
+- Relationship with user and tweet entities
 ```
     belongs_to :user
     belongs_to :tweet
 ```
-- Se crea un controlador para la entidad Like, con metodos `create` y `destroy` dependiendo si un usuario hace click en el botón like. Si el mismo usuario presiona 2 veces el botón like, el objeto creado se destruye.
-- Para activar el método `destroy` para acciones un 'dislike', se agrega un método en el modelo `Tweet`, que identifica si el usuario ya clickeó previamente:
+- A controller is created for the Like entity, with `create` and `destroy` methods depending on whether a user clicks the like button. If the same user presses the like button 2 times, the created object is destroyed.
+- To activate the `destroy` method that triggers a 'dislike', a method is added in the `Tweet` model, which identifies if the user has previously clicked:
     ```
     def liked?(user)
         self.likes.find_by(user_id: user.id).present?
     end
     ```
-### *Herramientas
-    *ruby '2.7.3'
-    *gem 'devise'
-    *gem 'bootstrap', '~> 4.6.0'
-    *gem 'jquery-rails'
-    *gem 'faker'
-    *gem 'kaminari'
-    *gem 'rails', '~> 5.2.6'
+### *Tools*
+    *ruby v2.7.3
+    *rails v5.2.6
+    *Devise gem for authentications
+    *Bootstrap gem v4.6.0 for styles
+    *Jquery-rails gem as bootstrap complement
+    *Faker gem to generate users and tweets
+    *Kaminari to paginate (every 50 tweets)
 
-### *Demo
-Proyecto subido a Heroku: https://the-twitter-project.herokuapp.com/
+### **Known bugs**
+  *Toggle does not display links in navabar
+  *Tweets are not responsive to smaller screen sizes
+  *N + 1 query errors
 
