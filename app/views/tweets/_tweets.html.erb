@@ -1,13 +1,17 @@
-<div class="mt-5">
+<div class="mt-2">
+    <% if !user_signed_in? %>
+        <h1 class="text-light text-center pb-3">Welcome to <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
+    <% end %>
     <div class="d-flex justify-content-center">
         <%= paginate @tweets %>
     </div>
 
 <div class="tweets container">
     <% tweets.each do |tweet| %>
+        <!--user photo -->
         <div class="row bg-light rounded-pill py-3">
             <div class="col-md-2">
-                <%= image_tag tweet.user.photo, class:'img-fluid rounded-circle' %>
+                <%= image_tag tweet.user.photo, class:'img-fluid rounded-circle size:"150x150"' %>
             </div>
             <div class="col-md-10">
                 <div class="row">
@@ -80,21 +84,21 @@
                     <div class="date col-md-4">
                         <% if user_signed_in? %>
                             <%= link_to user_tweet_path(@user, tweet) do %>
-                                <%=time_ago_in_words(tweet.created_at) %>
+                                <p><%=time_ago_in_words(tweet.created_at) %> ago</p>
                             <% end %>
                         <% else %>
                             <%= link_to new_user_session_path do %>
-                                <%=time_ago_in_words(tweet.created_at) %>
+                                <p><%=time_ago_in_words(tweet.created_at) %> ago</p>
                             <% end %>
                         <% end %>
                     </div>
                 </div>
                 <!-- content container -->
-                <div class="row m-5">
+                <div class="row m-5 py-3 rounded-pill">
                     <div class="content col-md h4">
                         <div class=" ">
                         <%= tweet.content %>
-                        .(<%= tweet.user.name %>)
+                        .(<%= tweet.user %>)
                         </div>
                     </div>
                 </div>

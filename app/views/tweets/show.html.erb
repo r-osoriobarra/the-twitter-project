@@ -1,44 +1,27 @@
 <div class="container text-light">
-    <h1><%= "#{@tweet.user.name}" %></h1>
-
-    <table class="bg-light text-dark rounded-lg py-3">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Comment</th>
-                <th>Publication</th>
-                <th>Likes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><%= image_tag @tweet.user.photo, class:'img-fluid rounded-circle' %></td>
-                <td><%= @tweet.content %></td>
-                <td><%=time_ago_in_words(@tweet.created_at)%></td>
-                <td><%= @tweet.count_likes %></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
+    <h1><%= "#{@tweet.user}" %></h1>
         <div class="row bg-light text-dark rounded-pill py-3">
             <div class="col">
-                <%= image_tag @tweet.user.photo, class:'img-fluid rounded-circle' %>
+                <%= image_tag @tweet.user.photo, class:'img-fluid rounded-circle size:"150x150"' %>
             </div>
-            <div class="content col h4">
+            <div class="col">
+                <h4>Comment</h4>
                 <%= @tweet.content %>
             </div> 
             <div class="col">
-                <%=time_ago_in_words(@tweet.created_at)%>
+                <h4>Publicated </h4>
+                <p></p><%=time_ago_in_words(@tweet.created_at)%> ago
             </div>
             <div class="col">
+                <h4>Likes</h4>
                 <%= @tweet.count_likes %>
             </div>
         </div>
 
-    <h2>Users que les gusto el tweet</h2>
+    <h5 class="mt-3">Users who likes this tweet</h5>
     <% Tweet.liker_users(@tweet, @users).each do |user|%>
-        <%= user %>
+        <%= image_tag user.photo , class:'img-fluid rounded-circle size:"70x70"' %>
     <% end %>
 </div>
+
+<div class="container my-4"><%= link_to 'Back to Tweets', root_path %></div>

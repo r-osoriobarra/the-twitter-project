@@ -16,7 +16,6 @@ class Tweet < ApplicationRecord
   #custom methods
   def liked?(user)
     self.likes.find_by(user_id: user.id).present?
-    #ver si existe un error con esta sentencia
   end
 
   def count_likes

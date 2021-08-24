@@ -1,4 +1,4 @@
-<h1 class="text-light text-center font-weight-bold">Comment in Twitter.Project</h1>
+<h1 class="text-light text-center">Comment in <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
 <div class="container px-5">
     <%= form_with(model: [@user, tweet], local: true) do |f| %>
         <% if tweet.errors.any? %>
@@ -14,11 +14,11 @@
     
         <div class="form-group" readonly>
         <%= f.label :content %>
-        <%= f.text_area :content, class:'form-control' %>
+        <%= f.text_area :content, size: "70x5", class:'form-control form-control-lg', placeholder: "What's new?"  %>
         </div>
 
         <div class="actions">
-        <%= f.submit "Tweet!",class:'btn btn-outline-light' %>
+        <%= f.submit "Tweet!",class:'btn btn-outline-light'%>
         </div>
     <% end %>
 </div>
