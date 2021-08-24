@@ -1,35 +1,44 @@
-<h1>SHOW DEL TWEET</h1>
+<div class="container text-light">
+    <h1><%= "#{@tweet.user.name}" %></h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>User_id</th>
-            <th>User Photo</th>
-            <th>Content</th>
-            <th>Date</th>
-            <th>N Likes</th>
-            <th>N Retweets</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><%= @tweet.id %></td>
-            <td><%= @tweet.user_id %></td>
-            <td><%= image_tag @tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
-            <td><%= @tweet.content %></td>
-            <td>|</td>
-            <td><%= time_ago_in_words(Time.now - @tweet.created_at) %></td>
-            <td>|</td>
-            <td><%= (@tweet.created_at) %></td>
-            <td>|</td>
-            <td><%= @tweet.count_likes %></td>
-            <td><%= Tweet.count_retweets(@tweet) %></td>
-        </tr>
-    </tbody>
-</table>
+    <table class="bg-light text-dark rounded-lg py-3">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Comment</th>
+                <th>Publication</th>
+                <th>Likes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= image_tag @tweet.user.photo, class:'img-fluid rounded-circle' %></td>
+                <td><%= @tweet.content %></td>
+                <td><%=time_ago_in_words(@tweet.created_at)%></td>
+                <td><%= @tweet.count_likes %></td>
+            </tr>
+        </tbody>
+    </table>
 
-<h2>Users que les gusto el tweet</h2>
-<% Tweet.liker_users(@tweet, @users).each do |user|%>
-    <%= image_tag user.photo, class:'img-fluid rounded-circle' %>
-<% end %>
+
+
+        <div class="row bg-light text-dark rounded-pill py-3">
+            <div class="col">
+                <%= image_tag @tweet.user.photo, class:'img-fluid rounded-circle' %>
+            </div>
+            <div class="content col h4">
+                <%= @tweet.content %>
+            </div> 
+            <div class="col">
+                <%=time_ago_in_words(@tweet.created_at)%>
+            </div>
+            <div class="col">
+                <%= @tweet.count_likes %>
+            </div>
+        </div>
+
+    <h2>Users que les gusto el tweet</h2>
+    <% Tweet.liker_users(@tweet, @users).each do |user|%>
+        <%= user %>
+    <% end %>
+</div>

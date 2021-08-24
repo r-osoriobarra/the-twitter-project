@@ -92,7 +92,10 @@
                 <!-- content container -->
                 <div class="row m-5">
                     <div class="content col-md h4">
-                        <div class=" "><%= tweet.content %></div>
+                        <div class=" ">
+                        <%= tweet.content %>
+                        .(<%= tweet.user.name %>)
+                        </div>
                     </div>
                 </div>
             </div>
