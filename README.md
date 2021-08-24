@@ -4,8 +4,8 @@ Final test Milestone 1 delivery Web application development with Rails module(G4
 
 ## Content
 1. **About Twitter.Project**
-  1. *Versions*
-  1. *Demo*
+    1. *Versions*
+    1. *Demo*
 1. **Installation**  
 1. **How it works**
     1. *Conceptual model*
@@ -108,7 +108,7 @@ This project consists of 3 main models: **User, Tweet y Like**
     *Kaminari to paginate (every 50 tweets)
 
 ### **Known bugs**
-  *Toggle does not display links in navabar
-  *Tweets are not responsive to smaller screen sizes
-  *N + 1 query errors
+    *Toggle does not display links in navabar
+    *Tweets are not responsive to smaller screen sizes
+    *N + 1 query errors
 
