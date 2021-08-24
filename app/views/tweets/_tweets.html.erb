@@ -1,71 +1,147 @@
-<h1>All Tweets</h1>
-<%= paginate @tweets %>
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>User Photo</th>
-            <th>Content</th>
-            <th>Date</th>
-            <th>N Likes</th>
-            <th>N Retweets</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% tweets.each do |tweet| %>
-        <tr>
-            <td><%= tweet.id %></td>
-            <td><%= image_tag tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
-            <td><%= tweet.content %></td>
-            <% if user_signed_in? %>
-                <td>
-                    <%= link_to user_tweet_path(@user, tweet) do %>
-                        <%=time_ago_in_words(tweet.created_at) %>
+<div class="mt-5">
+    <div class="d-flex justify-content-center">
+        <%= paginate @tweets %>
+    </div>
+
+<div class="tweets container">
+    <% tweets.each do |tweet| %>
+        <div class="row border border-primary rounded-pill py-3 bg-primary">
+            <div class="col-md-2">
+                <%= image_tag tweet.user.photo, class:'img-fluid rounded-circle' %>
+            </div>
+            <div class="col-md-10">
+                <div class="row border">
+                <!-- like and retweet if user is logged -->
+                    <% if user_signed_in? %>
+                        <div class="like col-md-4 text-center">
+                            <% if tweet.liked?(@user) %>
+                                <%= link_to create_like_path(tweet), method: :delete do %>
+                                    <div class="text-danger"><%= svg('heart-fill') %></div>
+                                <% end %>
+                            <% else %>
+                                <%= link_to destroy_like_path(tweet), method: :post do %>
+                                    <div class="text-danger"><%= svg('heart')%></div>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <div class="retweet col-md-4 text-center">
+                            <%= link_to create_retweet_path(tweet) ,method: :post do %>
+                                <%= svg('retweet') %>
+                            <% end %>
+                        </div>
+                    <% else %>
+                    <!-- like and retweet if user isn't logged -->
+                        <div class="like col-md-4 text-center">
+                            <%= tweet.count_likes%>
+                            <%= link_to new_user_session_path do %>
+                                <div class="text-danger"><%= svg('heart-fill')%></div>
+                            <% end %>
+                        </div>
+                        <div class="retweet col-md-4 text-center">
+                            <%= link_to new_user_session_path do %>
+                                <%= svg('retweet') %>
+                            <% end %> 
+                        </div>    
                     <% end %>
-                </td>
-            <% else %>
-                <td>
-                    <%= link_to new_user_session_path do %>
-                        <%=time_ago_in_words(tweet.created_at) %>
-                    <% end %>
-                </td>
-            <% end %>
-            <td><%= tweet.count_likes %></td>
-            <td><%= Tweet.count_retweets(tweet) %></td>
-            
-            <% if user_signed_in? %>
-                <% if tweet.liked?(@user) %>
+                    <!-- date of the tweet -->
+                    <div class="date col-md-4 justify-content-end">
+                        <% if user_signed_in? %>
+                            <%= link_to user_tweet_path(@user, tweet) do %>
+                                <%=time_ago_in_words(tweet.created_at) %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to new_user_session_path do %>
+                                <%=time_ago_in_words(tweet.created_at) %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <!-- content container -->
+                <div class="row">
+                    <div class="content col-md pt-5">
+                        <%= tweet.content %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    <% end %>
+</div>
+    
+
+
+
+
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>User Photo</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>N Likes</th>
+                <th>N Retweets</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tweets.each do |tweet| %>
+            <tr>
+                <td><%= tweet.id %></td>
+                <td><%= image_tag tweet.user.photo, class:'img-fluid rounded-circle size:50x50' %></td>
+                <td><%= tweet.content %></td>
+                <% if user_signed_in? %>
                     <td>
-                        <%= link_to create_like_path(tweet), method: :delete do %>
-                            <div class="text-danger"><%= svg('heart-fill') %></div>
+                        <%= link_to user_tweet_path(@user, tweet) do %>
+                            <%=time_ago_in_words(tweet.created_at) %>
                         <% end %>
                     </td>
                 <% else %>
                     <td>
-                        <%= link_to destroy_like_path(tweet), method: :post do %>
-                            <div class="text-danger"><%= svg('heart')%></div>
+                        <%= link_to new_user_session_path do %>
+                            <%=time_ago_in_words(tweet.created_at) %>
                         <% end %>
                     </td>
                 <% end %>
-                <td>
-                    <%= link_to create_retweet_path(tweet) ,method: :post do %>
-                        <%= svg('retweet') %>
+                <td><%= tweet.count_likes %></td>
+                <td><%= Tweet.count_retweets(tweet) %></td>
+                
+                <% if user_signed_in? %>
+                    <% if tweet.liked?(@user) %>
+                        <td>
+                            <%= link_to create_like_path(tweet), method: :delete do %>
+                                <div class="text-danger"><%= svg('heart-fill') %></div>
+                            <% end %>
+                        </td>
+                    <% else %>
+                        <td>
+                            <%= link_to destroy_like_path(tweet), method: :post do %>
+                                <div class="text-danger"><%= svg('heart')%></div>
+                            <% end %>
+                        </td>
                     <% end %>
-                </td>
-            <% else %>
-                <td>
-                    <%= link_to new_user_session_path do %>
-                        <div class="text-danger"><%= svg('heart')%></div>
-                    <% end %>
-                </td>
-                <td>
-                    <%= link_to new_user_session_path do %>
-                        <%= svg('retweet') %>
-                    <% end %>    
-                </td>
+                    <td>
+                        <%= link_to create_retweet_path(tweet) ,method: :post do %>
+                            <%= svg('retweet') %>
+                        <% end %>
+                    </td>
+                <% else %>
+                    <td>
+                        <%= link_to new_user_session_path do %>
+                            <div class="text-danger"><%= svg('heart-fill')%></div>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= link_to new_user_session_path do %>
+                            <%= svg('retweet') %>
+                        <% end %>    
+                    </td>
+                <% end %>
+            </tr>
             <% end %>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-<%= paginate @tweets %>
+        </tbody>
+    </table>
+    <%= paginate @tweets %>
+</div>

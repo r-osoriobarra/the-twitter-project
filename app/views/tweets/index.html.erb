@@ -1,7 +1,10 @@
-<h1>Bienvenido a tuiter </h1>
-<% if user_signed_in? %>
-    <%= render 'form', tweet: @tweet %>
-<% end %>
+<div class="mt-5 pt-2">
+    <h2 class="text-primary font-weight-bold mb-0 mt-5">Twitter project</h2>
+    
+    <% if user_signed_in? %>
+        <%= render 'form', tweet: @tweet %>
+    <% end %>
 
-<%= render 'tweets', tweets: @tweets %>
+    <%= render 'tweets', tweets: @tweets %>
+</div>
     

@@ -10,19 +10,19 @@ require 'faker'
 
 User.create([{
     name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image,
+    photo: Faker::Avatar.image(size: "150x150"),
     email: 'user01@mail.com',
     password: '123456',
     password_confirmation: '123456'
 },{
     name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image,
+    photo: Faker::Avatar.image(size: "150x150"),
     email: 'user02@mail.com',
     password: '123456',
     password_confirmation: '123456'
 },{
     name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image,
+    photo: Faker::Avatar.image(size: "150x150"),
     email: 'user03@mail.com',
     password: '123456',
     password_confirmation: '123456'
