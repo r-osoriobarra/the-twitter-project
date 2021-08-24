@@ -27,7 +27,8 @@ class Tweet < ApplicationRecord
   end
 
   def self.liker_users(tweet_obj, users_array)
-
+      
+      #obtain an array with user_id relationed with the tweet
       likes_collection = tweet_obj.likes
       users_id_collection = Array.new
       
@@ -35,6 +36,7 @@ class Tweet < ApplicationRecord
         users_id_collection << like.user_id
       end
 
+      #obtain an array with users objects relationed with the tweet and likes
       likerUsers = Array.new
       users_array.each do |user|
         users_id_collection.each do |id|
