@@ -104,5 +104,5 @@ El modelo físico entonces quedaría de la siguiente manera.
     *gem 'rails', '~> 5.2.6'
 
 ### *Demo
-Proyecto subido a Heroku: 
+Proyecto subido a Heroku: https://the-twitter-project.herokuapp.com/
 
