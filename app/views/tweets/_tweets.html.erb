@@ -20,13 +20,13 @@
             <% if user_signed_in? %>
                 <td>
                     <%= link_to user_tweet_path(@user, tweet) do %>
-                        <%=tweet.created_at %>
+                        <%=time_ago_in_words(tweet.created_at) %>
                     <% end %>
                 </td>
             <% else %>
                 <td>
                     <%= link_to new_user_session_path do %>
-                        <%=tweet.created_at %>
+                        <%=time_ago_in_words(tweet.created_at) %>
                     <% end %>
                 </td>
             <% end %>

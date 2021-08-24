@@ -18,7 +18,11 @@
             <td><%= @tweet.user_id %></td>
             <td><%= image_tag @tweet.user.photo, class:' img-fluid rounded-circle size:50x50' %></td>
             <td><%= @tweet.content %></td>
-            <td><%= @tweet.created_at %></td>
+            <td>|</td>
+            <td><%= time_ago_in_words(Time.now - @tweet.created_at) %></td>
+            <td>|</td>
+            <td><%= (@tweet.created_at) %></td>
+            <td>|</td>
             <td><%= @tweet.count_likes %></td>
             <td><%= Tweet.count_retweets(@tweet) %></td>
         </tr>
