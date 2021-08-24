@@ -6,7 +6,7 @@ class LikesController < ApplicationController
         like = Like.create(user_id: current_user.id, tweet_id: tweet.id)
         
         if like.save
-            redirect_to root_path, notice: "se creó un like!"
+            redirect_to root_path, notice: "You just added a like!"
         end
     end
 
@@ -14,7 +14,7 @@ class LikesController < ApplicationController
         tweet = Tweet.find(params[:id])
         like = Like.find_by(user_id: current_user.id)
         like.destroy
-        redirect_to root_path, notice: "se destruyó like del post #{tweet.id} "
+        redirect_to root_path, notice: "You just added a dislike!"
     end    
     
 end

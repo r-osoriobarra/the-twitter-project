@@ -35,14 +35,16 @@
                                 </div>
                         </div>
                         <!--retweet button-->
-                        <div class="rt row">
-                            <div class="col-md-9 p-0">
-                                <div class="d-flex justify-content-end font-weight-bold text-primary"><%= Tweet.count_retweets(tweet)%></div>
-                            </div>
-                            <div class="col-md-3 p-0">
-                                <%= link_to create_retweet_path(tweet) ,method: :post do %>
-                                    <div class="text-info pl-0"><%= svg('retweet') %> Rt</div>
-                                <% end %>
+                        <div class="like col-md-4 text-center">
+                            <div class="rt row">
+                                <div class="col-md-3 p-0">
+                                    <div class="font-weight-bold text-primary d-flex justify-content-end pr-2"><%= Tweet.count_retweets(tweet)%></div>
+                                </div>
+                                <div class="col-md-9 p-0">
+                                    <%= link_to create_retweet_path(tweet) ,method: :post do %>
+                                        <div class="col-md-9 p-0 d-flex justify-content-start"><%= svg('retweet') %> Rt</div>
+                                    <% end %>
+                                </div>
                             </div>
                         </div>
                     <% else %>

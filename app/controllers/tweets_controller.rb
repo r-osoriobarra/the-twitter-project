@@ -23,7 +23,7 @@ class TweetsController < ApplicationController
       user_id: original_tweet.user_id,
       tweet_id: original_tweet.id
     )
-    redirect_to root_path, notice: "se creó un retweet!"
+    redirect_to root_path, notice: "Retweet was successfully created."
   end
 
   def create
