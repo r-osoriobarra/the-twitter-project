@@ -12,7 +12,7 @@ class LikesController < ApplicationController
 
     def destroy
         tweet = Tweet.find(params[:id])
-        like = Like.find_by(user_id: current_user.id)
+        like = tweet.likes.find_by(user_id: current_user.id)
         like.destroy
         redirect_to root_path, notice: "You just added a dislike!"
     end    
