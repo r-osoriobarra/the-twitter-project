@@ -9,17 +9,22 @@
         </tr>
     </thead>
     <tbody>
-        <% @users.each do |user| %>
-        <tr>
-            <% if user != current_user%>
-                <th><%= "@#{user.name}" %></th>
-                <% if user.followers.include? current_user%>
-                    <th><%= link_to 'Unfollow', destroy_follow_path(user), method: :delete %></th>
-                <% else %>
-                <th><%= link_to 'Follow', create_follow_path(user), method: :post %></th>
-                <% end %>
-            <% end %> 
-        </tr>
-        <% end %>
+        
+            <% @users.each do |user| %>
+                <tr>
+                    <th><%= "@#{user.name}" %></th>
+                        <% if user_signed_in? %>
+                                <% if user != current_user%>
+                                    <% if user.followers.include? current_user%>
+                                        <th><%= link_to 'Unfollow', destroy_follow_path(user), method: :delete %></th>
+                                    <% else %>
+                                        <th><%= link_to 'Follow', create_follow_path(user), method: :post %></th>
+                                    <% end %>
+                                <% end %> 
+                        <% else %>
+                            <th><%= link_to 'Follow', new_user_session_path %></th>
+                        <% end %>
+                </tr>
+            <% end %>
     </tbody>
 </table>
