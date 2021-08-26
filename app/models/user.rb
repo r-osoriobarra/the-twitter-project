@@ -10,8 +10,13 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   #follows relations
+  #followed side
   has_many :follows, dependent: :destroy
-  has_many :followers, through: :follows, dependent: :destroy
+  has_many :followers, through: :follows
+
+  #follower side
+  has_many :inverse_follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followed_users, through: :inverse_follows, source: :user
 
   #custom methods
   def to_s

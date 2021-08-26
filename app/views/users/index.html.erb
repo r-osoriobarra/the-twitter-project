@@ -12,9 +12,10 @@
         
             <% @users.each do |user| %>
                 <tr>
-                    <th><%= "@#{user.name}" %></th>
+                    
                         <% if user_signed_in? %>
                                 <% if user != current_user%>
+                                    <th><%= "@#{user.name}" %></th>
                                     <% if user.followers.include? current_user%>
                                         <th><%= link_to 'Unfollow', destroy_follow_path(user), method: :delete %></th>
                                     <% else %>
@@ -22,6 +23,7 @@
                                     <% end %>
                                 <% end %> 
                         <% else %>
+                            <th><%= "@#{user.name}" %></th>
                             <th><%= link_to 'Follow', new_user_session_path %></th>
                         <% end %>
                 </tr>
