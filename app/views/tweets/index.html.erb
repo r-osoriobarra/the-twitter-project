@@ -1,9 +1,7 @@
 <div class="mt-5 pt-2">
-    
+    <%= link_to 'Users List', users_path  %>
     <% if user_signed_in? %>
         <%= render 'form', tweet: @tweet %>
     <% end %>
-
     <%= render 'tweets', tweets: @tweets %>
 </div>
-    

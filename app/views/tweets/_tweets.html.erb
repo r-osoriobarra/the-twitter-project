@@ -25,13 +25,13 @@
                                     </div>
                                     <% if tweet.liked?(@user) %>
                                         <div class="col-md-3 p-0">
-                                            <%= link_to create_like_path(tweet), method: :delete do %>
-                                                <div class="text-danger pl-0"><%= svg('heart-fill')%> Like</div>
+                                            <%= link_to destroy_like_path(tweet), method: :delete do %>
+                                                <div class="text-danger pl-0"><%= svg('heart-fill')%> Dislike</div>
                                             <% end %>
                                         </div>
                                     <% else %>
                                         <div class="col-md-3 p-0">
-                                            <%= link_to destroy_like_path(tweet), method: :post do %>
+                                            <%= link_to create_like_path(tweet), method: :post do %>
                                                 <div class="text-danger pl-0"><%= svg('heart')%> Like</div>
                                             <% end %>
                                         </div>
@@ -96,10 +96,7 @@
                 <!-- content container -->
                 <div class="row m-5 py-3 rounded-pill">
                     <div class="content col-md h4">
-                        <div class=" ">
                         <%= tweet.content %>
-                        .(<%= tweet.user %>)
-                        </div>
                     </div>
                 </div>
             </div>

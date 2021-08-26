@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link active' %>
                     </li>
+                    <li class="nav-item text-light">
+                        <%= "@#{current_user.name}" %>
+                    </li>
                 <% else %>
                     <li class="nav-item">
                         <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link active font-weight-bold' %>
