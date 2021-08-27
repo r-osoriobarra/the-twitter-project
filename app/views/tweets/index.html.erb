@@ -1,7 +1,27 @@
 <div class="mt-5 pt-2">
-    <%= link_to 'Users List', users_path  %>
+    
+    <%= link_to 'Users List', users_path  %> <!--#TODO provisional-->
+    
     <% if user_signed_in? %>
-        <%= render 'form', tweet: @tweet %>
+        <div>
+            <%= render 'form', tweet: @tweet %>
+        </div>
+        <div class="d-flex justify-content-center">
+            <%= paginate @tweets %>
+        </div>
+        <div>
+            <%= render 'followedTweets', tweets: @tweets %>
+        </div>
+    <% else %>
+        <div>
+            <h1 class="text-light text-center pb-3">Welcome to <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
+            <div class="d-flex justify-content-center">
+                <%= paginate @tweets %>
+            </div>
+            <%= render 'allTweets', tweets: @tweets %>
+        </div>
     <% end %>
-    <%= render 'tweets', tweets: @tweets %>
+    <div class="d-flex justify-content-center">
+        <%= paginate @tweets %>
+    </div>
 </div>

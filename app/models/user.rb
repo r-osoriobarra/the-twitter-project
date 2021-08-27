@@ -23,4 +23,10 @@ class User < ApplicationRecord
     self.name
   end
 
+  def self.followed_list(user) #TODO metodo provisional para encontrar usuarios a los  que sigo
+    user.followed_users
+  end
+
 end
+
+

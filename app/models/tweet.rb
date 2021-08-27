@@ -46,5 +46,4 @@ class Tweet < ApplicationRecord
 
       return likerUsers
   end
-  
 end
