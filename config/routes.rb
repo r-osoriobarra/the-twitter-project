@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  
   devise_for :user
   
   resources :users do
     resources :tweets, except: [:index]
   end
-  
+  resources :hashtags
   root 'tweets#index'
   
   #create routes

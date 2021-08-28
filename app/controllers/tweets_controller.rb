@@ -1,7 +1,11 @@
 class TweetsController < ApplicationController
   
   def index
-    @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    if params[:q]
+      @tweets = Tweet.where('content LIKE ?', "%#{params[:q]}%").order(created_at: :desc).page(params[:page])
+    else
+      @tweets = Tweet.order(created_at: :desc).page(params[:page])
+    end
     @tweet = Tweet.new
     @user = current_user
   end
@@ -29,8 +33,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.create(tweet_params)
     @user = current_user
-
-    @tweet.user = current_user
+    @tweet.user = @user
 
       respond_to do |format|
         if @tweet.save

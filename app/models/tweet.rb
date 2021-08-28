@@ -14,18 +14,22 @@ class Tweet < ApplicationRecord
   validates :content, presence: true
 
   #custom methods
+  #use of like button
   def liked?(user)
     self.likes.find_by(user_id: user.id).present?
   end
 
+  #likes count
   def count_likes
     self.likes.empty? ? 0 : self.likes.count
   end
 
+  #RT count
   def self.count_retweets(tweet)
     Tweet.all.count {|t| t.tweet_id == tweet.id}
   end
 
+  #users who likes a tweet
   def self.liker_users(tweet_obj, users_array)
       
       #obtain an array with user_id relationed with the tweet
@@ -46,4 +50,5 @@ class Tweet < ApplicationRecord
 
       return likerUsers
   end
+
 end
