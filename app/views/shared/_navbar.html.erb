@@ -33,6 +33,10 @@
                 <div class="alert">
                     <%= alert %>
                 </div>
+                <%= form_with(url: root_path, method: :get, local: true, class: 'navbar form-inline') do |f| %>
+                    <%= f.text_field :q, class: 'form-control mr-sm-2', placeholder: 'looking for a tweet?' %>
+                    <%= f.submit "Search",class:'btn btn-outline-light actions' %>
+                <% end %>
             </div>
         </div>
     </div>

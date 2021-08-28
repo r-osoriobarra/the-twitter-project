@@ -9,9 +9,11 @@
         <div class="d-flex justify-content-center">
             <%= paginate @tweets %>
         </div>
-        <div>
-            <%= render 'followedTweets', tweets: @tweets %>
-        </div>
+        <% if params[:q].nil? %>
+                <%= render 'followedTweets', tweets: @tweets %>
+        <% else %>
+                <%= render 'allTweets', tweets: @tweets %>
+        <% end %>
     <% else %>
         <div>
             <h1 class="text-light text-center pb-3">Welcome to <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
