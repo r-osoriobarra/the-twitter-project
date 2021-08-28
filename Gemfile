@@ -7,6 +7,7 @@ gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
 gem 'faker'
 gem 'kaminari'
+gem 'activeadmin'
   
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
