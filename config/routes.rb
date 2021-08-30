@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+  
+  #adminactive
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
+  #devise
   devise_for :user
   
+  #nested routes users adn tweets
   resources :users do
     resources :tweets, except: [:index]
   end
-  resources :hashtags
+
+  #root
   root 'tweets#index'
   
   #create routes

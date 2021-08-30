@@ -14,5 +14,24 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    column :id
+    column :name
+    column :email
+    column 'Following', :user do |u|
+      u.followed_users.count
+    end
+    column 'Tweets',:user do |u|
+      u.tweets.count
+    end
+    column 'Likes', :user do |u|
+      u.likes.count
+    end
+    column 'Retweets', :id do |u|
+      u.RT_count
+    end
+    actions
+  end
   
 end

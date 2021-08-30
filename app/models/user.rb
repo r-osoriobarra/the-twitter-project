@@ -27,6 +27,10 @@ class User < ApplicationRecord
     user.followed_users
   end
 
+  def RT_count
+    self.tweets.count {|tweet| !tweet.tweet_id.nil?}
+  end
+
 end
 
 
