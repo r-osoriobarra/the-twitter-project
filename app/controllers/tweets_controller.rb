@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
     end
     @tweet = Tweet.new
     @user = current_user
+    @users = User.all
   end
 
   def show
