@@ -5,9 +5,9 @@ class FollowsController < ApplicationController
     @follow = Follow.create(user_id: user.id, follower_id: follower.id)
 
     if @follow.save
-      redirect_to users_path, notice: "You started to follow #{user.name}!"
+      redirect_to root_path, notice: "You started to follow #{user.name}!"
     else
-      redirect_to users_path, notice: "You cannot follow this user"
+      redirect_to root_path, notice: "You cannot follow this user"
       #crear una vista de errores que se llame desde el index con render
     end
   end
@@ -16,6 +16,6 @@ class FollowsController < ApplicationController
     user = User.find(params[:id])
     @follow = user.follows.find_by(follower_id: current_user)
     @follow.destroy
-    redirect_to users_path, notice: "You stopped following @#{user.name}"
+    redirect_to root_path, notice: "You stopped following @#{user.name}"
   end
 end

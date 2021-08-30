@@ -1,29 +1,33 @@
 <div class="mt-5 pt-2">
-    
-    <%= link_to 'Users List', users_path  %> <!--#TODO provisional-->
-    z
-    <% if user_signed_in? %>
-        <div>
-            <%= render 'form', tweet: @tweet %>
-        </div>
+    <div class="row">
+        <% if user_signed_in? %>
+            <div class="col-2">
+                <%= render template: :'users/index' %>
+            </div>
+            <div class="col-10">
+                <div>
+                    <%= render 'form', tweet: @tweet %>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <%= paginate @tweets %>
+                </div>
+                <% if params[:q].nil? %>
+                        <%= render 'followedTweets', tweets: @tweets %>
+                <% else %>
+                        <%= render 'allTweets', tweets: @tweets %>
+                <% end %>
+            </div>
+        <% else %>
+            <div>
+                <h1 class="text-light text-center pb-3">Welcome to <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
+                <div class="d-flex justify-content-center">
+                    <%= paginate @tweets %>
+                </div>
+                <%= render 'allTweets', tweets: @tweets %>
+            </div>
+        <% end %>
         <div class="d-flex justify-content-center">
             <%= paginate @tweets %>
         </div>
-        <% if params[:q].nil? %>
-                <%= render 'followedTweets', tweets: @tweets %>
-        <% else %>
-                <%= render 'allTweets', tweets: @tweets %>
-        <% end %>
-    <% else %>
-        <div>
-            <h1 class="text-light text-center pb-3">Welcome to <span class="font-italic text-primary font-weight-bold">Twitter.Project</span></h1>
-            <div class="d-flex justify-content-center">
-                <%= paginate @tweets %>
-            </div>
-            <%= render 'allTweets', tweets: @tweets %>
-        </div>
-    <% end %>
-    <div class="d-flex justify-content-center">
-        <%= paginate @tweets %>
     </div>
 </div>

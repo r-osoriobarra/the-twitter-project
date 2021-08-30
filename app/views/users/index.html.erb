@@ -1,36 +1,19 @@
-
-
-
-
-
-
-
-<table class="text-light border-left">
-    <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>        
-        </tr>
-    </thead>
-    <tbody>
-        
-            <% @users.each do |user| %>
-                <tr>
-                    <% if user_signed_in? %>
-                            <% if user != current_user%>
-                                <th><%= "@#{user.name}" %></th>
-                                <% if user.followers.include? current_user%>
-                                    <th><%= link_to 'Unfollow', destroy_follow_path(user), method: :delete %></th>
-                                <% else %>
-                                    <th><%= link_to 'Follow', create_follow_path(user), method: :post %></th>
-                                <% end %>
-                            <% end %> 
+<div class="pt-5 text-light">
+    <h6 class="text-center mb-4 font-weight-bold bg-primary rounded-pill">Follows</h6>
+    <% @users.each do |user| %>
+        <% if user != current_user%>
+            <div class="row pl-2">
+                <div class="col-2">
+                    <%= image_tag user.photo, class:'img rounded-circle align-middle' %>
+                </div>
+                <div class="col-10 font-weight-bold pl-5">
+                    <% if user.followers.include? current_user%>
+                        <%= link_to 'Unfollow', destroy_follow_path(user), method: :delete, class:'text-light' %>
                     <% else %>
-                        <th><%= "@#{user.name}" %></th>
-                        <th><%= link_to 'Follow', new_user_session_path %></th>
+                        <%= link_to 'Follow', create_follow_path(user), method: :post, class: 'text-primary' %>
                     <% end %>
-                </tr>
-            <% end %>
-    </tbody>
-</table>
+                </div>
+            </div>
+        <% end %>    
+    <% end %>
+</div>
