@@ -23,10 +23,12 @@ class User < ApplicationRecord
     self.name
   end
 
+  #list of follewed users
   def self.followed_list(user) #TODO metodo provisional para encontrar usuarios a los  que sigo
     user.followed_users
   end
 
+  #count retweets
   def RT_count
     self.tweets.count {|tweet| !tweet.tweet_id.nil?}
   end
