@@ -21,10 +21,10 @@ This project tries to replicate some of the most popular features of the Twitter
 - Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
 - **Update 1.1v:** adding new features as hashtag functions, tweets search-bar, follows and admin-panel.
 #### *Demo*
-`https://the-twitter-project.herokuapp.com/`
+- `https://the-twitter-project.herokuapp.com/`
 
-*for admins*
-`https://the-twitter-project.herokuapp.com/admin`
+- *for admins*
+- `https://the-twitter-project.herokuapp.com/admin`
     - email: `admin@mail.com`
     - password: `123123`
 
