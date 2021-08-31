@@ -1,6 +1,6 @@
 # Twitter.Project
 
-Final test Milestone 1 delivery Web application development with Rails module(G46), Desafío Latam.
+Final test Milestone 2 delivery Web application development with Rails module(G46), Desafío Latam.
 
 ## Content
 1. **About Twitter.Project**
@@ -9,9 +9,6 @@ Final test Milestone 1 delivery Web application development with Rails module(G4
 1. **Installation**  
 1. **How it works**
     1. *Conceptual model*
-    1. *User model*
-    1. *Tweet model*
-    1. *Like model*
 1. **Tools**
 1. **Known bugs**
 
@@ -21,9 +18,15 @@ This project tries to replicate some of the most popular features of the Twitter
 
 
 #### *Versions*
-Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
+- Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
+- **Update 1.1v:** adding new features as hashtag functions, tweets search-bar, follows and admin-panel.
 #### *Demo*
-https://the-twitter-project.herokuapp.com/
+`https://the-twitter-project.herokuapp.com/`
+
+*for admins*
+`https://the-twitter-project.herokuapp.com/admin`
+    - email: `admin@mail.com`
+    - password: `123123`
 
 ### **Installation**
   1. `git clone git@github.com:r-osoriobarra/the-twitter-project.git`
@@ -34,70 +37,16 @@ https://the-twitter-project.herokuapp.com/
 #### *Conceptual model*
 
 This project consists of 3 main models: **User, Tweet y Like**
-    - **User model**: manages all users who use the application. It is the main model to which the other models refer.
+    - **User model (update 1.1v)**: manages all users who use the application. It is the main model to which the other models refer. In 1.1v it was implemented a (N:N) recursive association to manage *Follower/Followed* functions and Follow model as well.
     - **Tweet model**: manages the creation and destruction of tweets. It also manages retweets in a recursive association.
     - **Like model**: manages the creation and destruction of *likes/dislikes* associated with tweets and users.
+    - **Follow model (update 1.1v)**: manages the relation between users when "follow" each other.
 
 - Some of the attributes such as **n_likes or n_retweets** by normalization disappear as attributes of the Tweet model, since it is obtained from the relationship between entities.
-- All models maintain a 1 to N relationship.
+- All models maintain a 1 to N relationship, except User recursive association, which is (N:N) **(update 1.1v)**
 
 ![Modelo conceptual](https://github.com/r-osoriobarra/ViajesChile/blob/main/assets/img/twitter_project.png)
 
-##### *User model*
-- For all user authentication, the Devise gem was used with this model.
-- Relationships are 1 to N with the rest of the models (Tweet and Like)
-```
-    has_many :tweets, dependent: :destroy
-    has_many :likes, dependent: :destroy
-```
-##### *Tweet model (and Retweet)*
-- With their controller, handle most of the app's actions (except authentication).
-- Relationship with user, like and tweet entities (recursive):
-```
-  #user and likes associations
-  belongs_to :user
-  has_many :likes, dependent: :destroy
-
-  #recursive retweet association
-  belongs_to :tweet, optional: true
-  has_many :tweets, dependent: :destroy
-```
-- In the tweet controller, the `retweet` method is also added, which is responsible for copying the retweeted comment, identifying the` params[:id] `of the created route `post /tweets/:id, to: 'tweets#retweet'`.
-  ```
-  def retweet
-    original_tweet = Tweet.find(params[:id])
-    @tweet = Tweet.create(
-      content: original_tweet.content,
-      user_id: original_tweet.user_id,
-      tweet_id: original_tweet.id
-    )
-    redirect_to root_path, notice: "Retweet was successfully created."
-  end
-  ```
-- In the model, instance and class methods are created to obtain the number of likes and retweets for each tweet, respectively, based on the relationship with each entity, since they are not attributes of the Tweet entity:
-
-```
- def count_likes
-    self.likes.empty? ? 0 : self.likes.count
-  end
-
-  def self.count_retweets(tweet)
-    Tweet.all.count {|t| t.tweet_id == tweet.id}
-  end
-```
-##### *Like model*
-- Relationship with user and tweet entities
-```
-    belongs_to :user
-    belongs_to :tweet
-```
-- A controller is created for the Like entity, with `create` and `destroy` methods depending on whether a user clicks the like button. If the same user presses the like button 2 times, the created object is destroyed.
-- To activate the `destroy` method that triggers a 'dislike', a method is added in the `Tweet` model, which identifies if the user has previously clicked:
-    ```
-    def liked?(user)
-        self.likes.find_by(user_id: user.id).present?
-    end
-    ```
 ### *Tools*
     *ruby v2.7.3
     *rails v5.2.6
@@ -105,7 +54,8 @@ This project consists of 3 main models: **User, Tweet y Like**
     *Bootstrap gem v4.6.0 for styles
     *Jquery-rails gem as bootstrap complement
     *Faker gem to generate users and tweets
-    *Kaminari to paginate (every 50 tweets)
+    *Kaminari gem to paginate (every 50 tweets)
+    *Admin active gem for Admin user
 
 ### **Known bugs**
     *Toggle does not display links in navabar
