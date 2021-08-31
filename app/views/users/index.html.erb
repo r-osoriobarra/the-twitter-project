@@ -4,11 +4,11 @@
         <% if user != current_user%>
             <div class="row pl-2">
                 <div class="col-2">
-                    <%= image_tag user.photo, class:'img rounded-circle align-middle' %>
+                    <%= image_tag user.photo, class:'img_follows rounded-circle align-middle' %>
                 </div>
                 <div class="col-10 font-weight-bold pl-5">
                     <% if user.followers.include? current_user%>
-                        <%= link_to 'Unfollow', destroy_follow_path(user), method: :delete, class:'text-light' %>
+                        <%= link_to 'Unfollow', destroy_follow_path(user), method: :delete, class:'text-danger center' %>
                     <% else %>
                         <%= link_to 'Follow', create_follow_path(user), method: :post, class: 'text-primary' %>
                     <% end %>

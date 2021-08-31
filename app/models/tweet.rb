@@ -1,6 +1,6 @@
 class Tweet < ApplicationRecord
   #kaminari pagination
-  paginates_per 10
+  paginates_per 15
 
   #user and likes associations
   belongs_to :user

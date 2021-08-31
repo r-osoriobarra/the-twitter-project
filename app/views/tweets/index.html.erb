@@ -23,11 +23,10 @@
                 <div class="d-flex justify-content-center">
                     <%= paginate @tweets %>
                 </div>
-                <%= render 'allTweets', tweets: @tweets %>
+                <div class="container container-welcome">
+                    <%= render 'allTweetsunlogged', tweets: @tweets %>
+                </div>
             </div>
         <% end %>
-        <div class="d-flex justify-content-center">
-            <%= paginate @tweets %>
-        </div>
     </div>
 </div>

@@ -3,44 +3,44 @@
     <% tweets.each do |tweet| %>
         <% if @user.followed_users.include? tweet.user or tweet.user == @user%> <!--#TODO ver si es necesario el OR-->
             <!--user photo -->
-            <div class="row bg-light rounded-pill py-3">
-                <div class="col-md-2">
-                    <%= image_tag tweet.user.photo, class:'img-fluid rounded-circle size:"150x150"' %>
+            <div class="row bg-light rounded-pill">
+                <div class="col-md-2 p-0 m-0">
+                    <%= image_tag tweet.user.photo, class:'img-profile-logged' %>
                 </div>
                 <div class="col-md-10">
-                    <div class="row">
+                    <div class="row pt-3">
                     <!--like and retweet if user is logged -->
                         <% if user_signed_in? %>
                             <!--like button-->
-                            <div class="like col-md-4 text-center">
+                            <div class="like col-md-3 text-center">
                                     <div class="row">
-                                        <div class="col-md-9 p-0">
+                                        <div class="col-md-4 p-0">
                                             <div class="d-flex justify-content-end font-weight-bold text-primary"><%= tweet.count_likes%></div>
                                         </div>
                                         <% if tweet.liked?(@user) %>
-                                            <div class="col-md-3 p-0">
+                                            <div class="col-md-8 pr-5 pl-0">
                                                 <%= link_to destroy_like_path(tweet), method: :delete do %>
-                                                    <div class="text-danger pl-0"><%= svg('heart-fill')%> Dislike</div>
+                                                    <div class="text-danger"><%= svg('heart-fill')%> Dislike</div>
                                                 <% end %>
                                             </div>
                                         <% else %>
-                                            <div class="col-md-3 p-0">
+                                            <div class="col-md-8 padding-like pl-0">
                                                 <%= link_to create_like_path(tweet), method: :post do %>
-                                                    <div class="text-danger pl-0"><%= svg('heart')%> Like</div>
+                                                    <div class="text-danger"><%= svg('heart')%> Like</div>
                                                 <% end %>
                                             </div>
                                         <% end %>
                                     </div>
                             </div>
                             <!--retweet button-->
-                            <div class="like col-md-4 text-center">
+                            <div class="col-md-2 text-center">
                                 <div class="rt row">
-                                    <div class="col-md-3 p-0">
+                                    <div class="col-md-4 p-0">
                                         <div class="font-weight-bold text-primary d-flex justify-content-end pr-2"><%= Tweet.count_retweets(tweet)%></div>
                                     </div>
-                                    <div class="col-md-9 p-0">
+                                    <div class="col-md-8 pr-5 pl-0">
                                         <%= link_to create_retweet_path(tweet) ,method: :post do %>
-                                            <div class="col-md-9 p-0 d-flex justify-content-start"><%= svg('retweet') %> Rt</div>
+                                            <div class="d-flex justify-content-start"><%= svg('retweet') %> Rt</div>
                                         <% end %>
                                     </div>
                                 </div>
@@ -48,14 +48,14 @@
                         <% else %>
                         <!-- like and retweet if user isn't logged -->
                             <!--like button-->
-                            <div class="like col-md-4 text-center">
+                            <div class="like col-md-3 text-center">
                                 <div class="row">
-                                    <div class="col-md-9 p-0">
+                                    <div class="col-md-4 p-0">
                                         <div class="d-flex justify-content-end font-weight-bold text-primary"><%= tweet.count_likes%></div>
                                     </div>
-                                    <div class="col-md-3 p-0">
+                                    <div class="col-md-8 pr-5 pl-0">
                                         <%= link_to new_user_session_path do %>
-                                            <div class="text-danger pl-0"><%= svg('heart-fill')%> Like</div>
+                                            <div class="col-md-8 padding-like pl-0 text-danger"><%= svg('heart-fill')%> Like</div>
                                         <% end %>
                                     </div>
                                 </div>
@@ -88,14 +88,15 @@
                         </div>
                     </div>
                     <!-- content container -->
-                    <div class="row m-5 py-3 rounded-pill">
-                        <div class="content col-md h4">
+                    <div class="m-5 h6">
                             <%= hashtag(tweet.content) %>
-                        </div>
                     </div>
                 </div>
             </div>
             <br>
         <% end %>
     <% end %>
+    <div class="d-flex justify-content-center">
+        <%= paginate @tweets %>
+    </div>
 </div>

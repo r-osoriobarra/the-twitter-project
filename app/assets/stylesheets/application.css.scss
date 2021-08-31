@@ -21,7 +21,33 @@ body {
     background-color: black;
     }
 
-.img {
+.img_follows {
     height: 3em;
     width: 3em;
+}
+
+.center {
+    align-items: baseline;
+}
+
+.img-profile-logged {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 48%;
+    border-bottom-left-radius: 48%;
+}
+
+.img-profile-unlogged {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 48%;
+    border-bottom-left-radius: 48%;
+}
+
+.padding-like {
+    padding-right: 4em;
+}
+
+.container-welcome {
+    padding: 0 5em;
 }
