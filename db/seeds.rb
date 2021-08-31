@@ -11,27 +11,39 @@ require 'faker'
 User.create([{
     name: 'superman',
     photo: 'https://sm.ign.com/t/ign_es/screenshot/default/publicity-photo-superman-the-movie-20409106-1054-1_8zn8.1280.jpg',
-    email: 'user01@mail.com',
+    email: 'superman@mail.com',
     password: '123123',
     password_confirmation: '123123'
 },{
     name: 'batman',
-    photo: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2017_23/2033316/170610-crop-adam-west-batman-3-ew-1156a.jpg',
-    email: 'user02@mail.com',
+    photo: 'https://illgetdrivethru.files.wordpress.com/2020/09/batman-1966.jpg?w=600',
+    email: 'batman@mail.com',
     password: '123123',
     password_confirmation: '123123'
 },{
     name: 'spiderman',
     photo: 'https://i.ytimg.com/vi/6mAb29eUkBE/maxresdefault.jpg',
-    email: 'user03@mail.com',
+    email: 'spiderman@mail.com',
     password: '123123',
     password_confirmation: '123123'
-}])
+},{
+    name: 'wonder_woman',
+    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Lynda_Carter_Wonder_Woman.JPG/245px-Lynda_Carter_Wonder_Woman.JPG',
+    email: 'wonder_woman@mail.com',
+    password: '123123',
+    password_confirmation: '123123'
+},{
+    name: 'de_ameizing_ezpiderman',
+    photo: 'https://i.ytimg.com/vi/69tTYWDJdP8/maxresdefault.jpg',
+    email: 'ezpyderman@mail.com',
+    password: '123123',
+    password_confirmation: '123123'}])
 
-100.times do
+
+300.times do
     Tweet.create(
         content: Faker::TvShows::BojackHorseman.quote,
-        user_id: rand(1..3)
+        user_id: rand(1..5)
     )
 end
 

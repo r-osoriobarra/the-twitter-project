@@ -90,7 +90,9 @@
                         <!-- content container -->
                         <div class="m-5 h6">
                             <% if !tweet.tweet_id.nil? %>
-                                <div class="text-primary m-0 p-0"><%= "RT from #{tweet.user.name}'s tweet:" %></div>
+                                <div class="text-primary m-0 p-0"><%= "RT @#{tweet.user.name}'s tweet" %></div>
+                            <% else %>
+                                <div class="text-primary m-0 p-0"><%= "@#{tweet.user.name}" %></div>
                             <% end %>
                             <br>
                             <%= hashtag(tweet.content) %>

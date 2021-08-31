@@ -89,6 +89,11 @@
                     <!-- content container -->
                     <div class="row m-5 py-3 rounded-pill">
                         <div class="content col-md h6">
+                            <% if !tweet.tweet_id.nil? %>
+                                <div class="text-primary m-0 p-0"><%= "RT @#{tweet.user.name}'s tweet" %></div>
+                            <% else %>
+                                <div class="text-primary m-0 p-0"><%= "@#{tweet.user.name}" %></div>
+                            <% end %>
                             <%= hashtag(tweet.content) %>
                         </div>
                     </div>
