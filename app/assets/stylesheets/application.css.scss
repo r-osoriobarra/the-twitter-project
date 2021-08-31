@@ -17,13 +17,14 @@
 
 @import "bootstrap";
 
-body {
+body, .nav-color {
     background-color: black;
     }
 
 .img_follows {
     height: 3em;
     width: 3em;
+    border-radius: 100%;
 }
 
 .center {
@@ -44,10 +45,31 @@ body {
     border-bottom-left-radius: 48%;
 }
 
+.img-show-logged {
+    width: 15em;
+    height: 15em;
+    border-radius: 100%;
+}
+
+.img-show-logged-followers {
+    width: 7em;
+    height: 7em;
+    border-radius: 100%;
+}
+
 .padding-like {
     padding-right: 4em;
+}
+
+.padding-notice {
+    padding-left: 1em;
 }
 
 .container-welcome {
     padding: 0 5em;
 }
+
+.margin-follows {
+    margin-top: 2.1em;
+}
+

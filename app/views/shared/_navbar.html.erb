@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark border-bottom fixed-top" style="background-color: black;">
+<nav class="navbar navbar-expand-lg navbar-dark border-bottom fixed-top nav-color">
     <div class="container-fluid">
         <%= link_to root_path, class: 'navbar-brand' do %>
             <div class="text-primary text-center font-weight-bold">
@@ -11,31 +11,36 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <% if user_signed_in? %>
-                    <li class="nav-item">
-                        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link active' %>
+                    <li class="nav-item text-light pt-2 pr-2">
+                        <%= image_tag current_user.photo, class: 'img_follows' %>
                     </li>
-                    <li class="nav-item text-light">
+                    <li class="nav-item text-light pr-2 mr-2 pt-3 font-weight-bold">
                         <%= "@#{current_user.name}" %>
+                    </li>
+                    <li class="nav-item font-weight-bold pt-2">
+                        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link active text-danger' %>
                     </li>
                 <% else %>
                     <li class="nav-item">
                         <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link active font-weight-bold' %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to 'Log in', new_user_session_path, class: 'nav-link active' %>
+                        <%= link_to 'Log in', new_user_session_path, class: 'nav-link active text-primary' %>
                     </li>
                 <% end %>
             </ul>
-            <div class="container text-primary font-weight-bold">
+            <div class="container text-light font-weight-bold mr-0 h5">
                 <div class="notice">
                     <%= notice %>
                 </div>
                 <div class="alert">
                     <%= alert %>
                 </div>
-                <%= form_with(url: root_path, method: :get, local: true, class: 'navbar form-inline') do |f| %>
-                    <%= f.text_field :q, class: 'form-control mr-sm-2', placeholder: 'looking for a tweet?' %>
-                    <%= f.submit "Search",class:'btn btn-outline-light actions' %>
+                <% if user_signed_in? %>
+                    <%= form_with(url: root_path, method: :get, local: true, class: 'navbar form-inline') do |f| %>
+                        <%= f.text_field :q, class: 'form-control mr-sm-2', placeholder: 'looking for a tweet?' %>
+                        <%= f.submit "Search",class:'btn btn-outline-light actions' %>
+                    <% end %> 
                 <% end %>
             </div>
         </div>

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   #root
   root 'tweets#index'
+  get 'home/suspended', to: 'home#index', as: 'suspended'
+
   
   #create routes
   post '/follows/:id', to: 'follows#create', as:'create_follow' #requiero del id del usuario

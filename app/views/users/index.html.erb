@@ -1,12 +1,12 @@
-<div class="pt-5 text-light">
-    <h6 class="text-center mb-4 font-weight-bold bg-primary rounded-pill">Follows</h6>
+<div class="pt-5 margin-follows text-light">
+    <h6 class="text-center mb-4 font-weight-bold bg-primary rounded-pill py-2">T.P community</h6>
     <% @users.each do |user| %>
         <% if user != current_user%>
-            <div class="row pl-2">
+            <div class="row pl-2 py-1">
                 <div class="col-2">
-                    <%= image_tag user.photo, class:'img_follows rounded-circle align-middle' %>
+                    <%= image_tag user.photo, class:'img_follows align-middle' %>
                 </div>
-                <div class="col-10 font-weight-bold pl-5">
+                <div class="col-10 font-weight-bold pl-5 pt-3">
                     <% if user.followers.include? current_user%>
                         <%= link_to 'Unfollow', destroy_follow_path(user), method: :delete, class:'text-danger center' %>
                     <% else %>

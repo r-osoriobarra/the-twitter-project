@@ -9,26 +9,26 @@
 require 'faker'
 
 User.create([{
-    name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image(size: "150x150"),
+    name: 'superman',
+    photo: 'https://sm.ign.com/t/ign_es/screenshot/default/publicity-photo-superman-the-movie-20409106-1054-1_8zn8.1280.jpg',
     email: 'user01@mail.com',
-    password: '123456',
-    password_confirmation: '123456'
+    password: '123123',
+    password_confirmation: '123123'
 },{
-    name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image(size: "150x150"),
+    name: 'batman',
+    photo: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2017_23/2033316/170610-crop-adam-west-batman-3-ew-1156a.jpg',
     email: 'user02@mail.com',
-    password: '123456',
-    password_confirmation: '123456'
+    password: '123123',
+    password_confirmation: '123123'
 },{
-    name: Faker::TvShows::BojackHorseman.character,
-    photo: Faker::Avatar.image(size: "150x150"),
+    name: 'spiderman',
+    photo: 'https://i.ytimg.com/vi/6mAb29eUkBE/maxresdefault.jpg',
     email: 'user03@mail.com',
-    password: '123456',
-    password_confirmation: '123456'
+    password: '123123',
+    password_confirmation: '123123'
 }])
 
-50.times do
+100.times do
     Tweet.create(
         content: Faker::TvShows::BojackHorseman.quote,
         user_id: rand(1..3)

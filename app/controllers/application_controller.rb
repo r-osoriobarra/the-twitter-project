@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     def suspended?
         if current_user.suspended
             sign_out current_user
-            redirect_to root_path, notice: "Sorry, you are suspended"
+            redirect_to suspended_path
         end
     end
     

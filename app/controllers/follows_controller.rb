@@ -5,7 +5,7 @@ class FollowsController < ApplicationController
     @follow = Follow.create(user_id: user.id, follower_id: follower.id)
 
     if @follow.save
-      redirect_to root_path, notice: "You started to follow #{user.name}!"
+      redirect_to root_path, notice: "You started to follow @#{user.name}!"
     else
       redirect_to root_path, notice: "You cannot follow this user"
       #crear una vista de errores que se llame desde el index con render
