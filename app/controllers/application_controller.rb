@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery prepend: true, with: :exception #para que no se caiga cuando adminactive varias sesiones abiertas
+    protect_from_forgery with: :null_session
     before_action :configure_permit_params, if: :devise_controller?
     before_action :suspended?, if: :user_signed_in?
 
