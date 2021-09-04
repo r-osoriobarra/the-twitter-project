@@ -20,13 +20,23 @@ class Tweet < ApplicationRecord
   end
 
   #likes count
-  def count_likes
+  def like_count
     self.likes.empty? ? 0 : self.likes.count
   end
-
+  
   #RT count
-  def self.count_retweets(tweet)
-    Tweet.all.count {|t| t.tweet_id == tweet.id}
+  def retweets_count
+    retweets = Tweet.all.count {|tweet| tweet.tweet_id == self.id}
+  end
+  
+  #users who retweet count
+  def retwitted_from
+    
+    #tweet_ids = Tweet.all.where(:tweet_id == self.id)
+    #crear una varible para el modelo tweet que guarde el usuario que retweetea.
+    #Actualmente estoy reemplazando el user_id del retweet como el del user original
+    #crear una variable que guarde ambos en el moelode tweet. 
+
   end
 
   #users who likes a tweet
@@ -50,5 +60,6 @@ class Tweet < ApplicationRecord
 
       return likerUsers
   end
+
 
 end

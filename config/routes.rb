@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  #api routes
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :tweets
+    end
+  end
   
   #activeadmin
   devise_for :admin_users, ActiveAdmin::Devise.config

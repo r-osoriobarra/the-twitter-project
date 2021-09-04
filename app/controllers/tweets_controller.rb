@@ -25,10 +25,12 @@ class TweetsController < ApplicationController
     original_tweet = Tweet.find(params[:id])
     @tweet = Tweet.create(
       content: original_tweet.content,
-      user_id: original_tweet.user_id,
+      user_id: current_user.id,
       tweet_id: original_tweet.id
     )
-    redirect_to root_path, notice: "Retweet was successfully created."
+    if @tweet.save
+      redirect_to root_path, notice: "Retweet was successfully created."
+    end
   end
 
   def create
