@@ -5,7 +5,7 @@ module Api
                 tweets = Tweet.all
                 @tweets = tweets.as_json(
                     only: %i[id content user_id],
-                    methods: %i[like_count retweets_count]
+                    methods: %i[like_count retweets_count retwitted_from]
                 )
                 render json: @tweets
             end

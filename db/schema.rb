@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_014733) do
+ActiveRecord::Schema.define(version: 2021_09_04_212001) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_014733) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "tweet_id"
+    t.integer "user_rt"
     t.index ["tweet_id"], name: "index_tweets_on_tweet_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end

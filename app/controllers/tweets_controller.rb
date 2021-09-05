@@ -25,7 +25,8 @@ class TweetsController < ApplicationController
     original_tweet = Tweet.find(params[:id])
     @tweet = Tweet.create(
       content: original_tweet.content,
-      user_id: current_user.id,
+      user_id: original_tweet.user_id,
+      user_rt: current_user.id,
       tweet_id: original_tweet.id
     )
     if @tweet.save

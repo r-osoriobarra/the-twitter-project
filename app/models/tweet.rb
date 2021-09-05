@@ -31,12 +31,7 @@ class Tweet < ApplicationRecord
   
   #users who retweet count
   def retwitted_from
-    
-    #tweet_ids = Tweet.all.where(:tweet_id == self.id)
-    #crear una varible para el modelo tweet que guarde el usuario que retweetea.
-    #Actualmente estoy reemplazando el user_id del retweet como el del user original
-    #crear una variable que guarde ambos en el moelode tweet. 
-
+    tweets = Tweet.all.where(tweet_id: self.id).distinct.count(:user_rt)
   end
 
   #users who likes a tweet
