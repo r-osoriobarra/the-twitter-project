@@ -1,4 +1,9 @@
 class Tweet < ApplicationRecord
+  
+  #scope for api dates
+  scope :since_date, ->(date) { where('DATE(created_at) >= ?', date) }
+  scope :until_date, ->(date) { where('DATE(created_at) <= ?', date) }
+  
   #kaminari pagination
   paginates_per 50
 
@@ -55,6 +60,5 @@ class Tweet < ApplicationRecord
 
       return likerUsers
   end
-
 
 end

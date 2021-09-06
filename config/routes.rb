@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   #api routes
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :tweets
+      get 'tweets', to: 'tweets#index', as: 'tweets'
+      get '/:fecha1/:fecha2', to: 'tweets#by_dates', as: 'by_dates'
     end
   end
   
