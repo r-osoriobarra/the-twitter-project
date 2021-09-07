@@ -6,6 +6,7 @@ Final test Milestone 2 delivery Web application development with Rails module(G4
 1. **About Twitter.Project**
     1. *Versions*
     1. *Demo*
+    1. *Api*
 1. **Installation**  
 1. **How it works**
     1. *Conceptual model*
@@ -19,7 +20,8 @@ This project tries to replicate some of the most popular features of the Twitter
 
 #### *Versions*
 - Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
-- **Update 1.1v:** adding new features as hashtag functions, tweets search-bar, follows and admin-panel.
+- Version 1.1: adding new features as hashtag functions, tweets search-bar, follows and admin-panel.
+- **Update 1.2v:** adding api.
 #### *Demo*
 - `https://the-twitter-project.herokuapp.com/`
 
@@ -28,6 +30,11 @@ This project tries to replicate some of the most popular features of the Twitter
     - email: `admin@mail.com`
     - password: `123123`
 
+- *Api*
+Se añaden 3 metodos: 2 tipo GET y 1 tipo POST
+1. `/api/v1/news`: entrega los últmos 50 tweets
+2. `/api/v1/:date1/:date2`: entrega tweets entre 2 fechas
+3. `/api/v1/create_tweet` : crea un tweet desde api(con Basi authentication and user by default)
 ### **Installation**
   1. `git clone git@github.com:r-osoriobarra/the-twitter-project.git`
   2. `rails db:migrate`
