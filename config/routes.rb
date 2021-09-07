@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   #api routes
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      get 'tweets', to: 'tweets#index', as: 'tweets'
-      get '/:fecha1/:fecha2', to: 'tweets#by_dates', as: 'by_dates'
+      post 'create_tweet', to: 'tweets#create_api_tweet', as: 'create_tweet'
+      get 'news', to: 'tweets#news', as: 'tweets'
+      get '/:date1/:date2', to: 'tweets#by_dates', as: 'by_dates'
     end
   end
   
