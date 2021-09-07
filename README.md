@@ -31,7 +31,7 @@ This project tries to replicate some of the most popular features of the Twitter
     - password: `123123`
 
 - *Api*
-Se añaden 3 metodos: 2 tipo GET y 1 tipo POST
+3 methods added: 2 GET type and 1 POST type
 1. `/api/v1/news`: show last 50 tweets
 2. `/api/v1/:date1/:date2`: show tweets between requested dates
 3. `/api/v1/create_tweet` : create a tweet from Api (with Basic authentication and user by default).
