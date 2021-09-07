@@ -1,6 +1,6 @@
 # Twitter.Project
 
-Final test Milestone 2 delivery Web application development with Rails module(G46), Desafío Latam.
+Final test Milestone 3 delivery Web application development with Rails module(G46), Desafío Latam.
 
 ## Content
 1. **About Twitter.Project**
@@ -21,7 +21,7 @@ This project tries to replicate some of the most popular features of the Twitter
 #### *Versions*
 - Version 1.0 of the project. 2 more updates are expected to complete the project in the next 2 weeks.
 - Version 1.1: adding new features as hashtag functions, tweets search-bar, follows and admin-panel.
-- **Update 1.2v:** adding api.
+- **Update 1.2v:** adding Api.
 #### *Demo*
 - `https://the-twitter-project.herokuapp.com/`
 
@@ -32,9 +32,9 @@ This project tries to replicate some of the most popular features of the Twitter
 
 - *Api*
 Se añaden 3 metodos: 2 tipo GET y 1 tipo POST
-1. `/api/v1/news`: entrega los últmos 50 tweets
-2. `/api/v1/:date1/:date2`: entrega tweets entre 2 fechas
-3. `/api/v1/create_tweet` : crea un tweet desde api(con Basi authentication and user by default)
+1. `/api/v1/news`: show last 50 tweets
+2. `/api/v1/:date1/:date2`: show tweets between requested dates
+3. `/api/v1/create_tweet` : create a tweet from Api (with Basic authentication and user by default).
 ### **Installation**
   1. `git clone git@github.com:r-osoriobarra/the-twitter-project.git`
   2. `rails db:migrate`
